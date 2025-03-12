@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur de Bits</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Calculateur de Bits</h1>
+    <!-- Sélection du mode d'addition -->
+    <div class="bit-mode">
+        <label for="bitWidth">Mode d'addition :</label>
+        <select id="bitWidth">
+            <option value="8">8 bits</option>
+            <option value="16">16 bits</option>
+            <option value="32">32 bits</option>
+        </select>
+        <label for="negativeMode">
+            <input type="checkbox" id="negativeMode">
+            Mode négatif (8 bits)
+        </label>
+    </div>
+
+    <div id="calculator">
+        <!-- Remplace l'ancien display par un conteneur pour l'affichage binaire et l'équivalent décimal -->
+        <div class="display-container">
+            <div class="display">
+                <input type="text" id="display" value="0" disabled>
+            </div>
+            <div class="decimal-display">
+                <input type="text" id="decimalDisplay" value="0" disabled>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button class="button" data-value="1">1</button>
+            <button class="button" data-value="0">0</button>
+            <button class="button" data-value="&">AND</button>
+            <button class="button" data-value="|">OR</button>
+            <button class="button" data-value="^">XOR</button>
+            <button class="button" data-value="~">NOT</button>
+            <button class="button" data-value="+">+</button>
+            <button class="button" data-value="DEL">DEL</button>
+            <button class="button" data-value="=">=</button>
+            <button class="button" data-value="C">C</button>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
