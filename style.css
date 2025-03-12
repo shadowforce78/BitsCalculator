@@ -148,6 +148,107 @@ h1 {
     color: var(--primary-color);
 }
 
+/* Ajout des styles pour le conteneur principal */
+#mainContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+    max-width: 900px;
+}
+
+/* Améliorations pour le register viewer */
+#registerViewer {
+    background-color: var(--background-medium);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    min-width: 300px;
+    flex: 1;
+}
+
+#registerViewer h2 {
+    margin-bottom: 1.5rem;
+    color: var(--text-light);
+    font-weight: 500;
+    text-align: center;
+    border-bottom: 1px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+}
+
+.register {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.75rem;
+    background-color: var(--background-dark);
+    border-radius: 6px;
+    border-left: 3px solid var(--primary-color);
+    transition: all 0.2s ease;
+}
+
+.register:hover {
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.register-name {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.register-value {
+    font-family: 'Consolas', 'Courier New', monospace;
+    letter-spacing: 1px;
+    background-color: rgba(0, 120, 215, 0.1);
+    padding: 2px 6px;
+    border-radius: 3px;
+    flex: 1;
+    margin: 0 10px;
+}
+
+.register-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.reg-button {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    background-color: var(--background-medium);
+    color: var(--text-light);
+    border: 1px solid var(--primary-color);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.reg-button:hover {
+    background-color: var(--primary-color);
+}
+
+.reg-button[data-action="store"] {
+    border-color: var(--success-color);
+    color: var(--success-color);
+}
+
+.reg-button[data-action="store"]:hover {
+    background-color: var(--success-color);
+    color: var(--text-light);
+}
+
+.reg-button[data-action="load"] {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.reg-button[data-action="load"]:hover {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+}
+
 /* Pour les écrans plus petits */
 @media (max-width: 500px) {
     body {
@@ -156,5 +257,18 @@ h1 {
     
     #calculator, .bit-mode {
         max-width: 100%;
+    }
+}
+
+/* Adaptation pour les écrans mobiles */
+@media (max-width: 768px) {
+    #mainContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #calculator, #registerViewer {
+        max-width: 100%;
+        width: 100%;
     }
 }

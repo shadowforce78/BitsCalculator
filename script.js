@@ -3,13 +3,20 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log("Calculateur de Bits initialisé");
     
     const display = document.getElementById('display');
-    const decimalDisplay = document.getElementById('decimalDisplay'); // nouveau
+    const decimalDisplay = document.getElementById('decimalDisplay');
     const bitWidthSelect = document.getElementById('bitWidth');
     const negativeModeCheckbox = document.getElementById('negativeMode');
-    const buttons = document.querySelectorAll('button');
-
+    const buttons = document.querySelectorAll('.button');
+    const regButtons = document.querySelectorAll('.reg-button');
+    
+    // Gestionnaire pour les boutons de la calculatrice
     buttons.forEach(function(button) {
         button.addEventListener('click', calculate);
+    });
+    
+    // Gestionnaire pour les boutons des registres
+    regButtons.forEach(function(button) {
+        button.addEventListener('click', handleRegister);
     });
 
     function calculateExpression(expr) {
@@ -78,5 +85,37 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
         updateDecimal();
+    }
+
+    function handleRegister(e) {
+        const action = e.target.getAttribute('data-action');
+        const register = e.target.getAttribute('data-register');
+        const registerElement = document.getElementById(`register-${register}`);
+        
+        // Si on sauvegarde la valeur actuelle dans le registre
+        if (action === 'store') {
+            // Assurer que la valeur ne dépasse pas la largeur en bits
+            const bitWidth = parseInt(bitWidthSelect.value);
+            let valueToStore = display.value;
+            
+            // Si c'est un nombre binaire valide
+            if (/^[01]+$/.test(valueToStore)) {
+                // Si la valeur est trop longue, on la tronque
+                if (valueToStore.length > bitWidth) {
+                    valueToStore = valueToStore.substring(valueToStore.length - bitWidth);
+                } else {
+                    // Sinon, on complète avec des zéros en début
+                    valueToStore = valueToStore.padStart(bitWidth, '0');
+                }
+                registerElement.textContent = valueToStore;
+            }
+        }
+        // Si on charge une valeur depuis le registre
+        else if (action === 'load') {
+            const registerValue = registerElement.textContent;
+            // On remplace la valeur actuelle de l'affichage
+            display.value = registerValue;
+            updateDecimal();
+        }
     }
 });
